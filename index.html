@@ -357,6 +357,30 @@
       ? `✅ <strong>Protein:</strong> ${codons.join(' - ')}`
       : "⚠️ <strong>No valid protein formed.</strong>";
   });
+    if (!/^[AUCG]+$/.test(input)) {
+      outputDiv.textContent = '❌ Invalid input: Please enter only A, U, C, or G characters.';
+    } else {
+      const codons = [];
+      const start = input.indexOf('AUG');
+      if (start === -1 || input.length < start + 3) {
+        outputDiv.textContent = '❌ No valid start codon (AUG) found.';
+      } else {
+        for (let i = start; i <= input.length - 3; i += 3) {
+          const codon = input.slice(i, i + 3);
+          const amino = codonMap[codon];
+          if (amino) {
+            codons.push(amino);
+            if (amino.includes('Stop')) break;
+          } else {
+            codons.push('❓ Unknown');
+          }
+        }
+        outputDiv.textContent = codons.join(' - ');
+      }
+    }
+
+    document.querySelector('.translator-box').appendChild(outputDiv);
+  });
 </script>
 
 </body>
