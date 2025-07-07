@@ -57,7 +57,6 @@ For students trying to grasp how a string of letters becomes a functional protei
 
 Developed by **M. Pooja Verma**  
 B.Tech CSE Undergrad - A passionate learner with roots in Science 💚
-Aspiring Full-Stack Developer who is currently learning and exploring the field.
 
 ---
 
