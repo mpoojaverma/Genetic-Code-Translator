@@ -297,5 +297,67 @@
   <footer>
     <p>| Created by <strong>M. Pooja Verma </strong>©2025 RNA to Protein Translator | Built with ❤️ for Biology |</p>
   </footer>
+  <script>
+  const codonMap = {
+    UUU: 'Phe', UUC: 'Phe', UUA: 'Leu', UUG: 'Leu',
+    CUU: 'Leu', CUC: 'Leu', CUA: 'Leu', CUG: 'Leu',
+    AUU: 'Ile', AUC: 'Ile', AUA: 'Ile', AUG: 'Met (Start)',
+    GUU: 'Val', GUC: 'Val', GUA: 'Val', GUG: 'Val',
+    UCU: 'Ser', UCC: 'Ser', UCA: 'Ser', UCG: 'Ser',
+    CCU: 'Pro', CCC: 'Pro', CCA: 'Pro', CCG: 'Pro',
+    ACU: 'Thr', ACC: 'Thr', ACA: 'Thr', ACG: 'Thr',
+    GCU: 'Ala', GCC: 'Ala', GCA: 'Ala', GCG: 'Ala',
+    UAU: 'Tyr', UAC: 'Tyr', UAA: 'Stop', UAG: 'Stop',
+    CAU: 'His', CAC: 'His', CAA: 'Gln', CAG: 'Gln',
+    AAU: 'Asn', AAC: 'Asn', AAA: 'Lys', AAG: 'Lys',
+    GAU: 'Asp', GAC: 'Asp', GAA: 'Glu', GAG: 'Glu',
+    UGU: 'Cys', UGC: 'Cys', UGA: 'Stop', UGG: 'Trp',
+    CGU: 'Arg', CGC: 'Arg', CGA: 'Arg', CGG: 'Arg',
+    AGU: 'Ser', AGC: 'Ser', AGA: 'Arg', AGG: 'Arg',
+    GGU: 'Gly', GGC: 'Gly', GGA: 'Gly', GGG: 'Gly'
+  };
+
+  const inputField = document.querySelector('.translator-box input');
+  const translateBtn = document.querySelector('.translator-box button');
+  const translatorBox = document.querySelector('.translator-box');
+
+  const outputArea = document.createElement('div');
+  outputArea.style.marginTop = '1.5rem';
+  outputArea.style.fontSize = '1.1rem';
+  outputArea.style.color = '#2e7d32';
+  translatorBox.appendChild(outputArea);
+
+  translateBtn.addEventListener('click', () => {
+    const rawSeq = inputField.value.toUpperCase().replace(/[^AUCG]/g, '');
+    const codons = [];
+
+    // Find first AUG (Start codon)
+    const startIndex = rawSeq.indexOf('AUG');
+    if (startIndex === -1) {
+      outputArea.innerHTML = "❌ <strong>No start codon (AUG) found.</strong>";
+      return;
+    }
+
+    const trimmedSeq = rawSeq.slice(startIndex);
+    for (let i = 0; i < trimmedSeq.length; i += 3) {
+      const codon = trimmedSeq.slice(i, i + 3);
+      if (codon.length < 3) break;
+      const aminoAcid = codonMap[codon];
+      if (!aminoAcid) {
+        codons.push('[Invalid]');
+      } else if (aminoAcid === 'Stop') {
+        codons.push('⛔ Stop');
+        break;
+      } else {
+        codons.push(aminoAcid);
+      }
+    }
+
+    outputArea.innerHTML = codons.length
+      ? `✅ <strong>Protein:</strong> ${codons.join(' - ')}`
+      : "⚠️ <strong>No valid protein formed.</strong>";
+  });
+</script>
+
 </body>
 </html>
