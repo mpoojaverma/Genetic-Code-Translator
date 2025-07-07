@@ -68,4 +68,4 @@ This project is open for improvements — animations, mutation simulation, DNA i
 
 ## 🫶 Show Support
 
-If this project made you remember how beautiful biology is just star the repo, fork it, learn from it, and spread the science 💫
+If this project made you remember how beautiful biology is, just star the repo, fork it, learn from it, and spread the science! 💫
