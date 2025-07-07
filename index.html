@@ -12,13 +12,13 @@
       background: linear-gradient(to right, #e0f7fa, #ffffff);
     }
     header {
-      background: linear-gradient(to right, #4caf50, #81c784, #a5d6a7);
+      background: linear-gradient(135deg, #00c9ff, #92fe9d);
       color: white;
       padding: 2rem;
       text-align: center;
     }
     nav {
-      background: #388e3c;
+      background: #2c3e50;
       display: flex;
       justify-content: center;
       padding: 1rem 0;
@@ -37,193 +37,165 @@
       transition: color 0.3s ease;
     }
     nav ul li a:hover {
-      color: #ffd54f;
+      color: #f1c40f;
     }
     .tabbed-section {
       display: none;
       padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      background: #ffffffcc;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
     .active-tab {
       display: block;
     }
-    .input-section {
-      text-align: center;
-      padding: 2rem;
-      background: #e8f5e9;
+    h2 {
+      color: #2e7d32;
     }
-    .result-section {
-      text-align: center;
-      padding: 2rem;
-    }
-    input[type="text"] {
-      padding: 0.5rem;
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      padding: 0.5rem 1rem;
-      background: #2e7d32;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #388e3c;
-    }
-    table {
-      margin: 1rem auto;
-      border-collapse: collapse;
-      width: 90%;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 1rem;
-      text-align: center;
-    }
-    th {
-      background: #2e7d32;
-      color: white;
-    }
-    .start { background-color: #c8e6c9; }
-    .stop { background-color: #ffcdd2; }
-    .invalid { background-color: #ffe082; }
     footer {
       text-align: center;
       padding: 1rem;
-      background: #2e7d32;
+      background: #34495e;
       color: white;
     }
   </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('nav a');
+      const sections = document.querySelectorAll('.tabbed-section');
+      links.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
+          sections.forEach(section => {
+            section.classList.remove('active-tab');
+          });
+          document.getElementById(targetId).classList.add('active-tab');
+        });
+      });
+    });
+  </script>
 </head>
 <body>
-
   <header>
     <h1>🧬 RNA to Protein Translator 🧬</h1>
-    <p>Enter an RNA sequence and discover what proteins it creates!</p>
+    <p>Explore molecular biology like never before!</p>
   </header>
-
-</body>
-</html>
 
   <nav>
     <ul>
-      <li><a href="#" onclick="switchTab('home')">🏠 Home</a></li>
-      <li><a href="#" onclick="switchTab('intro')">🔬 Molecular Biology</a></li>
-      <li><a href="#" onclick="switchTab('how')">📖 How Translation Works</a></li>
-      <li><a href="#" onclick="switchTab('codon')">📚 Codon Table</a></li>
+      <li><a href="#tool-works">How It Works</a></li>
+      <li><a href="#molecular-biology">Molecular Biology</a></li>
+      <li><a href="#translation">Translation</a></li>
     </ul>
   </nav>
 
-  <main>
-    <section id="home" class="tabbed-section active-tab">
-      <section class="input-section">
-        <h2>🧪 RNA to Protein Translator</h2>
-        <label for="rnaInput">🔡 Enter RNA sequence (e.g., AUGGCUUAA):</label>
-        <input type="text" id="rnaInput" placeholder="Enter RNA sequence here">
-        <button onclick="translateRNA()">Translate</button>
-      </section>
-      <section class="result-section" id="resultSection">
-        <!-- Output table will appear here -->
-      </section>
-    </section>
+  <section class="tabbed-section active-tab" id="tool-works">
+    <h2>🛠️ How the Tool Works</h2>
+    <p><strong>RNA to Protein Translator Works (For Students)</strong></p>
+    <ul>
+      <li><strong>🧪 Input Validation:</strong> Checks if the input RNA sequence contains only A, U, G, C.</li>
+      <li><strong>🎯 Start Codon Recognition:</strong> Finds the first AUG codon to begin translation.</li>
+      <li><strong>📏 Reading Frame Establishment:</strong> Sets the reading frame to read triplets from AUG.</li>
+      <li><strong>🔄 Codon-to-Amino Acid Mapping:</strong> Uses the genetic code to convert codons to amino acids.</li>
+      <li><strong>🔗 Polypeptide Chain Assembly:</strong> Builds the amino acid sequence step by step.</li>
+      <li><strong>⛔ Stop Codon Recognition:</strong> Stops at UAA, UAG, or UGA codon.</li>
+      <li><strong>✅ Termination:</strong> Displays the final amino acid sequence or protein.</li>
+    </ul>
+    <p><strong>🧬 Example:</strong> Input RNA sequence: <code>5'- A U G G C A U C G U A A -3'</code></p>
+    <ol>
+      <li><strong>Find AUG:</strong> Start codon = Methionine (Met)</li>
+      <li><strong>Next Codon GCA:</strong> Alanine (Ala)</li>
+      <li><strong>Next Codon UCG:</strong> Serine (Ser)</li>
+      <li><strong>Next Codon UAA:</strong> Stop codon → Termination</li>
+    </ol>
+    <p><strong>Final Output:</strong> <code>Met - Ala - Ser</code></p>
+  </section>
 
-    <section id="intro" class="tabbed-section">
-      <h2>🔬 Introduction to Molecular Biology</h2>
-      <p>Molecular biology is a branch of science that explores the structure and function of genes at a molecular level. It is primarily concerned with understanding the interactions between DNA, RNA, and proteins within cells.</p>
-      <ul>
-        <li><strong>Replication:</strong> DNA copies itself for cell division.</li>
-        <li><strong>Transcription:</strong> DNA is transcribed into mRNA.</li>
-        <li><strong>Translation:</strong> mRNA is translated into proteins.</li>
-      </ul>
-      <p>These processes together are referred to as the Central Dogma of Molecular Biology: <strong>DNA → RNA → Protein</strong>.</p>
-    </section>
+  <section class="tabbed-section" id="molecular-biology">
+    <h2>🔬 Molecular Biology</h2>
+    <h3>The Central Dogma: The Flow of Genetic Information</h3>
+    <p><strong>DNA → RNA → Protein</strong></p>
+    <p><strong>DNA:</strong> Genetic blueprint, double-stranded, nucleus located.</p>
+    <p><strong>RNA:</strong> Single-stranded, messenger of genetic info.</p>
+    <p><strong>Proteins:</strong> Functional molecules derived from genetic data.</p>
 
-    <section id="how" class="tabbed-section">
-      <h2>📖 How Translation Works</h2>
-      <p>Translation is the final step in the expression of genes. It converts genetic code from RNA into a sequence of amino acids to form proteins. Codons, or 3-letter nucleotide sequences, are read by ribosomes and matched to corresponding amino acids.</p>
-      <ul>
-        <li><strong>Start Codon (AUG):</strong> Initiates translation and codes for Methionine.</li>
-        <li><strong>Stop Codons (UAA, UAG, UGA):</strong> End the translation process.</li>
-      </ul>
-      <p>Each codon is matched with an amino acid by tRNA molecules, creating a growing peptide chain.</p>
-    </section>
+    <h3>Genetic Material</h3>
+    <p><strong>DNA:</strong> Deoxyribose sugar, phosphate, nitrogenous bases A, G, C, T.</p>
+    <p><strong>RNA:</strong> Ribose sugar, A, G, C, U; single-stranded.</p>
+    <p>mRNA → message | tRNA → transfers amino acids | rRNA → ribosome structure</p>
 
-    <section id="codon" class="tabbed-section">
-      <h2>📚 Codon Table</h2>
-      <p>Below is a selection of codons and the amino acids they code for:</p>
-      <table>
-        <tr><th>Codon</th><th>Amino Acid</th></tr>
-        <tr><td>AUG</td><td>Methionine (Start)</td></tr>
-        <tr><td>UUU</td><td>Phenylalanine</td></tr>
-        <tr><td>UUC</td><td>Phenylalanine</td></tr>
-        <tr><td>UUA</td><td>Leucine</td></tr>
-        <tr><td>UUG</td><td>Leucine</td></tr>
-        <tr><td>UCU</td><td>Serine</td></tr>
-        <tr><td>UCC</td><td>Serine</td></tr>
-        <tr><td>UCA</td><td>Serine</td></tr>
-        <tr><td>UCG</td><td>Serine</td></tr>
-        <tr><td>UAU</td><td>Tyrosine</td></tr>
-        <tr><td>UAC</td><td>Tyrosine</td></tr>
-        <tr><td>UGU</td><td>Cysteine</td></tr>
-        <tr><td>UGC</td><td>Cysteine</td></tr>
-        <tr><td>UGA</td><td>STOP</td></tr>
-        <tr><td>UAG</td><td>STOP</td></tr>
-        <tr><td>UAA</td><td>STOP</td></tr>
-      </table>
-    </section>
-  </main>
+    <h3>Transcription Process</h3>
+    <p><strong>Initiation:</strong> RNA polymerase binds promoter.</p>
+    <p><strong>Elongation:</strong> Synthesizes mRNA complementary to DNA template.</p>
+    <p><strong>Termination:</strong> Stops at terminator site.</p>
+    <p><strong>Post-Processing:</strong> Splicing, 5' cap, Poly-A tail in eukaryotes.</p>
 
+    <h3>🧬 The Genetic Code</h3>
+    <p>Codon = 3 bases = 1 amino acid. Total 64 codons.</p>
+    <ul>
+      <li>🎯 Universal</li>
+      <li>🔁 Degenerate (redundancy)</li>
+      <li>➡️ Non-overlapping</li>
+      <li>🚫 Comma-less</li>
+      <li>🟢 Start = AUG (Methionine)</li>
+      <li>🔚 Stop = UAA, UAG, UGA</li>
+    </ul>
+  </section>
+
+  <section class="tabbed-section" id="translation">
+    <h2>🔄 How Translation Works</h2>
+    <p><strong>Translation:</strong> Ribosomes convert mRNA into protein chains.</p>
+    <h3>Stages:</h3>
+    <ul>
+      <li><strong>Initiation:</strong> Ribosome binds to AUG via initiator tRNA.</li>
+      <li><strong>Elongation:</strong> Codons read → tRNA adds amino acid → peptide bonds form.</li>
+      <li><strong>Translocation:</strong> Ribosome moves, builds chain.</li>
+      <li><strong>Termination:</strong> Stop codon reached → release factors end translation.</li>
+    </ul>
+    <h3>Protein Folding</h3>
+    <ul>
+      <li>🔹 Primary: Linear sequence</li>
+      <li>🔹 Secondary: Helices & Sheets</li>
+      <li>🔹 Tertiary: 3D shape</li>
+      <li>🔹 Quaternary: Subunit assembly</li>
+    </ul>
+  </section>
+<section class="tabbed-section" id="codon-table">
+    <h2>🧾 Codon Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Codon</th><th>Amino Acid</th>
+          <th>Codon</th><th>Amino Acid</th>
+          <th>Codon</th><th>Amino Acid</th>
+          <th>Codon</th><th>Amino Acid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>UUU</td><td>Phe</td><td>UUC</td><td>Phe</td><td>UUA</td><td>Leu</td><td>UUG</td><td>Leu</td></tr>
+        <tr><td>CUU</td><td>Leu</td><td>CUC</td><td>Leu</td><td>CUA</td><td>Leu</td><td>CUG</td><td>Leu</td></tr>
+        <tr><td>AUU</td><td>Ile</td><td>AUC</td><td>Ile</td><td>AUA</td><td>Ile</td><td>AUG</td><td>Met 🎯</td></tr>
+        <tr><td>GUU</td><td>Val</td><td>GUC</td><td>Val</td><td>GUA</td><td>Val</td><td>GUG</td><td>Val</td></tr>
+        <tr><td>UCU</td><td>Ser</td><td>UCC</td><td>Ser</td><td>UCA</td><td>Ser</td><td>UCG</td><td>Ser</td></tr>
+        <tr><td>CCU</td><td>Pro</td><td>CCC</td><td>Pro</td><td>CCA</td><td>Pro</td><td>CCG</td><td>Pro</td></tr>
+        <tr><td>ACU</td><td>Thr</td><td>ACC</td><td>Thr</td><td>ACA</td><td>Thr</td><td>ACG</td><td>Thr</td></tr>
+        <tr><td>GCU</td><td>Ala</td><td>GCC</td><td>Ala</td><td>GCA</td><td>Ala</td><td>GCG</td><td>Ala</td></tr>
+        <tr><td>UAU</td><td>Tyr</td><td>UAC</td><td>Tyr</td><td>UAA</td><td>Stop ⛔</td><td>UAG</td><td>Stop ⛔</td></tr>
+        <tr><td>CAU</td><td>His</td><td>CAC</td><td>His</td><td>CAA</td><td>Gln</td><td>CAG</td><td>Gln</td></tr>
+        <tr><td>AAU</td><td>Asn</td><td>AAC</td><td>Asn</td><td>AAA</td><td>Lys</td><td>AAG</td><td>Lys</td></tr>
+        <tr><td>GAU</td><td>Asp</td><td>GAC</td><td>Asp</td><td>GAA</td><td>Glu</td><td>GAG</td><td>Glu</td></tr>
+        <tr><td>UGU</td><td>Cys</td><td>UGC</td><td>Cys</td><td>UGA</td><td>Stop ⛔</td><td>UGG</td><td>Trp</td></tr>
+        <tr><td>CGU</td><td>Arg</td><td>CGC</td><td>Arg</td><td>CGA</td><td>Arg</td><td>CGG</td><td>Arg</td></tr>
+        <tr><td>AGU</td><td>Ser</td><td>AGC</td><td>Ser</td><td>AGA</td><td>Arg</td><td>AGG</td><td>Arg</td></tr>
+        <tr><td>GGU</td><td>Gly</td><td>GGC</td><td>Gly</td><td>GGA</td><td>Gly</td><td>GGG</td><td>Gly</td></tr>
+      </tbody>
+    </table>
+  </section>
   <footer>
-    <p>Created by <strong>M. Pooja Verma</strong> | BTech CSE Undergrad | Made with 💚 for Biology</p>
+    <p>| Created by <strong> M.Pooja Verma </strong> © 2025 RNA to Protein Translator | Built with ❤️ for Biology | </p>
   </footer>
-
-  <script>
-    function switchTab(tabId) {
-      document.querySelectorAll('.tabbed-section').forEach(tab => tab.classList.remove('active-tab'));
-      document.getElementById(tabId).classList.add('active-tab');
-    }
-
-    const codonMap = {
-      "AUG": "Methionine (Start)",
-      "UUU": "Phenylalanine", "UUC": "Phenylalanine",
-      "UUA": "Leucine", "UUG": "Leucine",
-      "UCU": "Serine", "UCC": "Serine", "UCA": "Serine", "UCG": "Serine",
-      "UAU": "Tyrosine", "UAC": "Tyrosine",
-      "UGU": "Cysteine", "UGC": "Cysteine",
-      "UGG": "Tryptophan",
-      "UAA": "STOP", "UAG": "STOP", "UGA": "STOP"
-    };
-
-    function translateRNA() {
-      const input = document.getElementById('rnaInput').value.toUpperCase().trim();
-      const resultSection = document.getElementById('resultSection');
-      resultSection.innerHTML = "";
-
-      if (input.length < 3) {
-        resultSection.innerHTML = "<p>Please enter a valid RNA sequence.</p>";
-        return;
-      }
-
-      let output = "<table><tr><th>Codon</th><th>Amino Acid</th></tr>";
-      for (let i = 0; i < input.length; i += 3) {
-        const codon = input.slice(i, i + 3);
-        if (codon.length < 3) break;
-        let aa = codonMap[codon] || "Invalid";
-        let cls = "";
-        if (aa.includes("Start")) cls = "start";
-        if (aa === "STOP") cls = "stop";
-        if (aa === "Invalid") cls = "invalid";
-        output += `<tr><td>${codon}</td><td class="${cls}">${aa}</td></tr>`;
-        if (aa === "STOP") break;
-      }
-      output += "</table>";
-      resultSection.innerHTML = output;
-    }
-  </script>
-
 </body>
 </html>
