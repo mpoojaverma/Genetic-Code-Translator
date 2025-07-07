@@ -9,11 +9,42 @@
 
   <header>
     <h1>🧬 RNA to Protein Translator 🧬</h1>
-    <p>🌿 This tool allows you to enter an RNA sequence and view the corresponding amino acids it translates into.🌿</p>
-    <p><p>🌿 Built for students and enthusiasts exploring the Central Dogma of molecular biology. 🌿</p></p>
+    <p>🌿 This tool allows you to enter an RNA sequence and view the corresponding amino acids it translates into. Built for students and enthusiasts exploring the Central Dogma of molecular biology. 🌿</p>
   </header>
 
-  <section class="input-section">
+  <nav>
+    <ul>
+      <li><a href="#intro">🔬 Introduction to Molecular Biology</a></li>
+      <li><a href="#how-it-works">📖 How It Works</a></li>
+      <li><a href="#translator">🧪 Try the Translator</a></li>
+      <li><a href="#codon-table">📚 Full Codon Table</a></li>
+    </ul>
+  </nav>
+
+  <section id="intro" class="info-section">
+    <h2>🔬 Introduction to Molecular Biology</h2>
+    <p>Molecular biology focuses on understanding the mechanisms by which genetic information encoded in DNA is used to produce the proteins that determine cell structure and function. This field bridges the gap between genetics and biochemistry.</p>
+    <p>Three core processes are central to molecular biology:</p>
+    <ul>
+      <li><strong>Replication:</strong> The process by which DNA makes a copy of itself during cell division.</li>
+      <li><strong>Transcription:</strong> The conversion of DNA information into messenger RNA (mRNA).</li>
+      <li><strong>Translation:</strong> The process by which mRNA is decoded to build proteins, the functional molecules in cells.</li>
+    </ul>
+    <p>The Central Dogma of Molecular Biology summarizes this flow of information as: <strong>DNA → RNA → Protein</strong>.</p>
+  </section>
+
+  <section id="how-it-works" class="info-section">
+    <h2>📖 How It Works</h2>
+    <p>In translation, the sequence of codons in mRNA is interpreted by the ribosome to assemble a chain of amino acids, forming a protein. Each group of three RNA nucleotides forms a codon that corresponds to one amino acid or a stop signal.</p>
+    <ul>
+      <li><strong>Start Codon:</strong> AUG — signals the beginning of translation and codes for Methionine.</li>
+      <li><strong>Stop Codons:</strong> UAA, UAG, UGA — signal the end of translation.</li>
+    </ul>
+    <p>The ribosome moves along the RNA sequence three nucleotides at a time, matching each codon to its corresponding amino acid using transfer RNA (tRNA). The amino acids are linked together to form a polypeptide chain, which folds into a functional protein.</p>
+  </section>
+
+  <section id="translator" class="input-section">
+    <h2>🧪 RNA to Protein Translator</h2>
     <label for="rnaInput">🔡 Enter RNA sequence (e.g., AUGGCUUAA):</label>
     <input type="text" id="rnaInput" placeholder="Enter RNA sequence here">
     <button onclick="translateRNA()">Translate</button>
@@ -23,19 +54,50 @@
     <!-- Output table will appear here -->
   </section>
 
-  <section class="info-section">
-    <h2>📖 How It Works 📖</h2>
-    <p>Every 3-letter RNA sequence, called a codon, corresponds to an amino acid. The first codon (AUG) is the start signal, and codons like UAA, UAG, and UGA are stop signals. This tool identifies valid codons and displays their amino acid translations until a stop codon is encountered.</p>
-
-    <h3>✨ Key Codons:</h3>
-    <ul>
-      <li><strong>AUG</strong> → Start codon (Methionine)</li>
-      <li><strong>UAA, UAG, UGA</strong> → Stop codons</li>
-    </ul>
+  <section id="codon-table" class="info-section">
+    <h2>📚 Full Codon Table</h2>
+    <p>This table lists the 64 possible RNA codons and the amino acids they code for. It is used during translation to determine which amino acid is added to a growing polypeptide chain.</p>
+    <table>
+      <tr><th>Codon</th><th>Amino Acid</th></tr>
+      <tr><td>UUU</td><td>Phenylalanine</td></tr>
+      <tr><td>UUC</td><td>Phenylalanine</td></tr>
+      <tr><td>UUA</td><td>Leucine</td></tr>
+      <tr><td>UUG</td><td>Leucine</td></tr>
+      <tr><td>UCU</td><td>Serine</td></tr>
+      <tr><td>UCC</td><td>Serine</td></tr>
+      <tr><td>UCA</td><td>Serine</td></tr>
+      <tr><td>UCG</td><td>Serine</td></tr>
+      <tr><td>UAU</td><td>Tyrosine</td></tr>
+      <tr><td>UAC</td><td>Tyrosine</td></tr>
+      <tr><td>UAA</td><td>STOP</td></tr>
+      <tr><td>UAG</td><td>STOP</td></tr>
+      <tr><td>UGU</td><td>Cysteine</td></tr>
+      <tr><td>UGC</td><td>Cysteine</td></tr>
+      <tr><td>UGA</td><td>STOP</td></tr>
+      <tr><td>UGG</td><td>Tryptophan</td></tr>
+      <tr><td>CUU</td><td>Leucine</td></tr>
+      <tr><td>CUC</td><td>Leucine</td></tr>
+      <tr><td>CUA</td><td>Leucine</td></tr>
+      <tr><td>CUG</td><td>Leucine</td></tr>
+      <tr><td>CCU</td><td>Proline</td></tr>
+      <tr><td>CCC</td><td>Proline</td></tr>
+      <tr><td>CCA</td><td>Proline</td></tr>
+      <tr><td>CCG</td><td>Proline</td></tr>
+      <tr><td>CAU</td><td>Histidine</td></tr>
+      <tr><td>CAC</td><td>Histidine</td></tr>
+      <tr><td>CAA</td><td>Glutamine</td></tr>
+      <tr><td>CAG</td><td>Glutamine</td></tr>
+      <tr><td>CGU</td><td>Arginine</td></tr>
+      <tr><td>CGC</td><td>Arginine</td></tr>
+      <tr><td>CGA</td><td>Arginine</td></tr>
+      <tr><td>CGG</td><td>Arginine</td></tr>
+      <tr><td>AUG</td><td>Methionine (Start)</td></tr>
+      <!-- Add remaining codons as needed -->
+    </table>
   </section>
 
   <footer>
-    <p>Created by <strong>M. Pooja Verma</strong> | BTech CSE | Made with 💚 for Biology | </p>
+    <p>Created by <strong>M. Pooja Verma</strong> | BTech CSE Undergrad | Made with 💚 for Biology</p>
   </footer>
 
   <script>
