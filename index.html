@@ -1,74 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RNA to Protein Translation</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fefefe;
-      padding: 30px;
-    }
-    h1 {
-      color: #4CAF50;
-      text-align: center;
-    }
-    p {
-      font-size: 18px;
-      text-align: center;
-    }
-    table {
-      margin: 30px auto;
-      border-collapse: collapse;
-      width: 80%;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    th, td {
-      padding: 12px;
-      border: 1px solid #ccc;
-      text-align: center;
-      font-size: 16px;
-    }
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-    .start {
-      color: green;
-      font-weight: bold;
-    }
-    .stop {
-      color: red;
-      font-weight: bold;
-    }
-    .invalid {
-      color: #999;
-      font-style: italic;
-    }
-  </style>
+  <title>RNA to Protein Translator | BioTool</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>RNA to Protein Translation</h1>
-  <p><strong>Input RNA:</strong> AUGGCUUAA</p>
+  <header>
+    <h1>🧬 RNA to Protein Translator</h1>
+    <p>Enter an RNA sequence to see its corresponding amino acid chain.</p>
+  </header>
 
-  <table>
-    <tr>
-      <th>Codon</th>
-      <th>Amino Acid</th>
-    </tr>
-    <tr>
-      <td>AUG</td>
-      <td class="start">Methionine (Start)</td>
-    </tr>
-    <tr>
-      <td>GCU</td>
-      <td class="invalid">Invalid</td>
-    </tr>
-    <tr>
-      <td>UAA</td>
-      <td class="stop">STOP</td>
-    </tr>
-  </table>
+  <section class="input-section">
+    <label for="rnaInput">🔡 Enter RNA sequence (e.g., AUGGCUUAA):</label>
+    <input type="text" id="rnaInput" placeholder="Enter RNA sequence here">
+    <button onclick="translateRNA()">Translate</button>
+  </section>
+
+  <section class="result-section" id="resultSection">
+    <!-- Output table will appear here -->
+  </section>
+
+  <section class="info-section">
+    <h2>📖 What is RNA Translation?</h2>
+    <p>RNA translation is the biological process where the sequence of codons (triplets of nucleotides) in RNA is converted into an amino acid chain — forming proteins essential to life.</p>
+
+    <h3>✨ Start & Stop Codons:</h3>
+    <ul>
+      <li><strong>AUG</strong> = Start codon → Methionine</li>
+      <li><strong>UAA, UAG, UGA</strong> = Stop codons → End of protein chain</li>
+    </ul>
+  </section>
+
+  <section class="cpp-section">
+    <h2>💻 C++ Logic Behind This</h2>
+    <pre>
+#include &lt;iostream&gt;
+#include &lt;map&gt;
+using namespace std;
+map&lt;string, string&gt; codonTable = {
+  {"AUG", "Methionine"}, {"UUU", "Phenylalanine"},
+  {"UAA", "STOP"}, {"UAG", "STOP"}, {"UGA", "STOP"}
+};
+string getAA(string codon) {
+  return codonTable.count(codon) ? codonTable[codon] : "Invalid";
+}
+    </pre>
+    <p>This original logic was implemented in C++, then ported to JavaScript so it runs live in-browser.</p>
+  </section>
+
+  <footer>
+    <p>Created by <strong>Pooja Verma</strong> | BTech CSE | Bio-Inspired Projects 🌿</p>
+  </footer>
+
+  <script>
+    const codonMap = {
+      "AUG": "Methionine (Start)",
+      "UUU": "Phenylalanine", "UUC": "Phenylalanine",
+      "UUA": "Leucine", "UUG": "Leucine",
+      "UCU": "Serine", "UCC": "Serine", "UCA": "Serine", "UCG": "Serine",
+      "UAU": "Tyrosine", "UAC": "Tyrosine",
+      "UGU": "Cysteine", "UGC": "Cysteine",
+      "UGG": "Tryptophan",
+      "UAA": "STOP", "UAG": "STOP", "UGA": "STOP"
+    };
+
+    function translateRNA() {
+      const input = document.getElementById('rnaInput').value.toUpperCase().trim();
+      const resultSection = document.getElementById('resultSection');
+      resultSection.innerHTML = "";
+
+      if (input.length < 3) {
+        resultSection.innerHTML = "<p>Please enter a valid RNA sequence.</p>";
+        return;
+      }
+
+      let output = "<table><tr><th>Codon</th><th>Amino Acid</th></tr>";
+      for (let i = 0; i < input.length; i += 3) {
+        const codon = input.slice(i, i + 3);
+        if (codon.length < 3) break;
+        let aa = codonMap[codon] || "Invalid";
+        let cls = "";
+        if (aa.includes("Start")) cls = "start";
+        if (aa === "STOP") cls = "stop";
+        if (aa === "Invalid") cls = "invalid";
+        output += `<tr><td>${codon}</td><td class="${cls}">${aa}</td></tr>`;
+        if (aa === "STOP") break;
+      }
+      output += "</table>";
+      resultSection.innerHTML = output;
+    }
+  </script>
 
 </body>
 </html>
