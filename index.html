@@ -8,8 +8,8 @@
 <body>
 
   <header>
-    <h1>🧬 RNA to Protein Translator</h1>
-    <p>Enter an RNA sequence to see its corresponding amino acid chain.</p>
+    <h1>🧬 RNA to Protein Translator 🧬</h1>
+    <p>🌿 This tool allows you to enter an RNA sequence and view the corresponding amino acids it translates into. Built for students and enthusiasts exploring the Central Dogma of molecular biology. 🌿</p>
   </header>
 
   <section class="input-section">
@@ -23,35 +23,18 @@
   </section>
 
   <section class="info-section">
-    <h2>📖 What is RNA Translation?</h2>
-    <p>RNA translation is the biological process where the sequence of codons (triplets of nucleotides) in RNA is converted into an amino acid chain — forming proteins essential to life.</p>
+    <h2>📖 How It Works</h2>
+    <p>Every 3-letter RNA sequence, called a codon, corresponds to an amino acid. The first codon (AUG) is the start signal, and codons like UAA, UAG, and UGA are stop signals. This tool identifies valid codons and displays their amino acid translations until a stop codon is encountered.</p>
 
-    <h3>✨ Start & Stop Codons:</h3>
+    <h3>✨ Key Codons:</h3>
     <ul>
-      <li><strong>AUG</strong> = Start codon → Methionine</li>
-      <li><strong>UAA, UAG, UGA</strong> = Stop codons → End of protein chain</li>
+      <li><strong>AUG</strong> → Start codon (Methionine)</li>
+      <li><strong>UAA, UAG, UGA</strong> → Stop codons</li>
     </ul>
   </section>
 
-  <section class="cpp-section">
-    <h2>💻 C++ Logic Behind This</h2>
-    <pre>
-#include &lt;iostream&gt;
-#include &lt;map&gt;
-using namespace std;
-map&lt;string, string&gt; codonTable = {
-  {"AUG", "Methionine"}, {"UUU", "Phenylalanine"},
-  {"UAA", "STOP"}, {"UAG", "STOP"}, {"UGA", "STOP"}
-};
-string getAA(string codon) {
-  return codonTable.count(codon) ? codonTable[codon] : "Invalid";
-}
-    </pre>
-    <p>This original logic was implemented in C++, then ported to JavaScript so it runs live in-browser.</p>
-  </section>
-
   <footer>
-    <p>Created by <strong>Pooja Verma</strong> | BTech CSE | Bio-Inspired Projects 🌿</p>
+    <p>Created by <strong>M. Pooja Verma</strong> | BTech CSE | Made with 💚 for Biology | </p>
   </footer>
 
   <script>
