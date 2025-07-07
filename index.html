@@ -148,11 +148,51 @@
   </section>
   <section class="tabbed-section" id="molecular-biology">
     <h2>🧠 Molecular Biology</h2>
-    <p>[Full molecular biology content with headings and emojis inserted here]</p>
+    <p>📌 <strong>The Central Dogma: The Flow of Genetic Information</strong></p>
+    <p>DNA → RNA → Protein</p>
+    <p>🧬 DNA is the blueprint, RNA carries messages, and proteins do the work.</p>
+    <p>🧪 <strong>DNA:</strong> Double-stranded, with bases A, T, G, C. Stores genetic info.</p>
+    <p>🧪 <strong>RNA:</strong> Single-stranded, with bases A, U, G, C. Carries instructions.</p>
+    <p>🧪 <strong>Protein:</strong> Made from amino acids. Performs cellular functions.</p>
+    <p>🔄 <strong>Transcription (DNA → RNA)</strong></p>
+    <ul>
+      <li>🔍 Initiation: RNA polymerase binds promoter.</li>
+      <li>🔁 Elongation: mRNA is synthesized.</li>
+      <li>🛑 Termination: Transcription ends, mRNA is released.</li>
+    </ul>
+    <p>🧬 <strong>The Genetic Code</strong></p>
+    <ul>
+      <li>🔢 Triplet code: 3 nucleotides = 1 codon = 1 amino acid</li>
+      <li>🚀 Start Codon: AUG (Methionine)</li>
+      <li>🛑 Stop Codons: UAA, UAG, UGA</li>
+      <li>🔁 Redundant, non-overlapping, universal</li>
+    </ul>
   </section>
   <section class="tabbed-section" id="translation">
     <h2>📘 How Translation Works</h2>
-    <p>[Full translation content with structured formatting and emojis inserted here]</p>
+    <p>🔁 <strong>Translation: mRNA to Protein</strong></p>
+    <p>🧫 Translation is the process by which the genetic information in mRNA is used to synthesize a polypeptide chain (protein).</p>
+    <p>📍 <strong>Location:</strong> Ribosomes in the cytoplasm.</p>
+    <p>🧪 <strong>Key Players:</strong></p>
+    <ul>
+      <li>🧬 <strong>mRNA:</strong> Carries the genetic message.</li>
+      <li>🧬 <strong>tRNA:</strong> Brings specific amino acids.</li>
+      <li>🧬 <strong>Ribosomes:</strong> Machinery for protein synthesis.</li>
+      <li>🧱 <strong>Amino Acids:</strong> The building blocks of proteins.</li>
+    </ul>
+    <p>🚀 <strong>Stages of Translation:</strong></p>
+    <ul>
+      <li><strong>Initiation:</strong> Small ribosomal subunit binds mRNA. Initiator tRNA binds to AUG. Large subunit joins → tRNA in P-site.</li>
+      <li><strong>Elongation:</strong> Codon recognition (A-site), peptide bond formation, translocation (A → P → E).</li>
+      <li><strong>Termination:</strong> Stop codon reaches A-site. Release factors cause polypeptide release. Ribosome disassembles.</li>
+    </ul>
+    <p>🧬 <strong>Protein Folding and Function:</strong></p>
+    <ul>
+      <li><strong>Primary Structure:</strong> Sequence of amino acids.</li>
+      <li><strong>Secondary:</strong> Local folds (α-helices, β-sheets).</li>
+      <li><strong>Tertiary:</strong> 3D structure formed by side-chain interactions.</li>
+      <li><strong>Quaternary:</strong> (if applicable) Multiple subunits form a complete protein.</li>
+    </ul>
   </section>
   <section class="tabbed-section" id="tool-works">
     <h2>🛠️ How the Tool Works</h2>
@@ -175,23 +215,35 @@
     <p><strong>Final Output:</strong> <code>Met - Ala - Ser</code></p>
   </section>
   <section class="tabbed-section" id="codon-table">
-    <h2>📚 Codon Table</h2>
+<h2>📚 Codon Table</h2>
     <table>
       <thead>
         <tr>
-          <th>Codon</th><th>Amino Acid</th>
-          <th>Codon</th><th>Amino Acid</th>
-          <th>Codon</th><th>Amino Acid</th>
-          <th>Codon</th><th>Amino Acid</th>
+          <th>Codon</th><th>Amino Acid</th><th>Codon</th><th>Amino Acid</th><th>Codon</th><th>Amino Acid</th><th>Codon</th><th>Amino Acid</th>
         </tr>
       </thead>
       <tbody>
-        <!-- Full codon-to-amino-acid table rows here -->
+        <tr><td>UUU</td><td>Phe</td><td>UUC</td><td>Phe</td><td>UUA</td><td>Leu</td><td>UUG</td><td>Leu</td></tr>
+        <tr><td>CUU</td><td>Leu</td><td>CUC</td><td>Leu</td><td>CUA</td><td>Leu</td><td>CUG</td><td>Leu</td></tr>
+        <tr><td>AUU</td><td>Ile</td><td>AUC</td><td>Ile</td><td>AUA</td><td>Ile</td><td>AUG</td><td>Met (Start)</td></tr>
+        <tr><td>GUU</td><td>Val</td><td>GUC</td><td>Val</td><td>GUA</td><td>Val</td><td>GUG</td><td>Val</td></tr>
+        <tr><td>UCU</td><td>Ser</td><td>UCC</td><td>Ser</td><td>UCA</td><td>Ser</td><td>UCG</td><td>Ser</td></tr>
+        <tr><td>CCU</td><td>Pro</td><td>CCC</td><td>Pro</td><td>CCA</td><td>Pro</td><td>CCG</td><td>Pro</td></tr>
+        <tr><td>ACU</td><td>Thr</td><td>ACC</td><td>Thr</td><td>ACA</td><td>Thr</td><td>ACG</td><td>Thr</td></tr>
+        <tr><td>GCU</td><td>Ala</td><td>GCC</td><td>Ala</td><td>GCA</td><td>Ala</td><td>GCG</td><td>Ala</td></tr>
+        <tr><td>UAU</td><td>Tyr</td><td>UAC</td><td>Tyr</td><td>UAA</td><td>Stop</td><td>UAG</td><td>Stop</td></tr>
+        <tr><td>CAU</td><td>His</td><td>CAC</td><td>His</td><td>CAA</td><td>Gln</td><td>CAG</td><td>Gln</td></tr>
+        <tr><td>AAU</td><td>Asn</td><td>AAC</td><td>Asn</td><td>AAA</td><td>Lys</td><td>AAG</td><td>Lys</td></tr>
+        <tr><td>GAU</td><td>Asp</td><td>GAC</td><td>Asp</td><td>GAA</td><td>Glu</td><td>GAG</td><td>Glu</td></tr>
+        <tr><td>UGU</td><td>Cys</td><td>UGC</td><td>Cys</td><td>UGA</td><td>Stop</td><td>UGG</td><td>Trp</td></tr>
+        <tr><td>CGU</td><td>Arg</td><td>CGC</td><td>Arg</td><td>CGA</td><td>Arg</td><td>CGG</td><td>Arg</td></tr>
+        <tr><td>AGU</td><td>Ser</td><td>AGC</td><td>Ser</td><td>AGA</td><td>Arg</td><td>AGG</td><td>Arg</td></tr>
+        <tr><td>GGU</td><td>Gly</td><td>GGC</td><td>Gly</td><td>GGA</td><td>Gly</td><td>GGG</td><td>Gly</td></tr>
       </tbody>
     </table>
   </section>
   <footer>
-    <p>© 2025 RNA to Protein Translator | Built with ❤️ for biology learners</p>
+    <p>| Created by <strong>M. Pooja Verma </strong>©2025 RNA to Protein Translator | Built with ❤️ for Biology |</p>
   </footer>
 </body>
 </html>
