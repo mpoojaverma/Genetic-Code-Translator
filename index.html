@@ -109,73 +109,72 @@
       margin-top: 2rem;
     }
   </style>
- <script>
-  const codonMap = {
-    'UUU': 'Phe', 'UUC': 'Phe', 'UUA': 'Leu', 'UUG': 'Leu',
-    'CUU': 'Leu', 'CUC': 'Leu', 'CUA': 'Leu', 'CUG': 'Leu',
-    'AUU': 'Ile', 'AUC': 'Ile', 'AUA': 'Ile', 'AUG': 'Met',
-    'GUU': 'Val', 'GUC': 'Val', 'GUA': 'Val', 'GUG': 'Val',
-    'UCU': 'Ser', 'UCC': 'Ser', 'UCA': 'Ser', 'UCG': 'Ser',
-    'CCU': 'Pro', 'CCC': 'Pro', 'CCA': 'Pro', 'CCG': 'Pro',
-    'ACU': 'Thr', 'ACC': 'Thr', 'ACA': 'Thr', 'ACG': 'Thr',
-    'GCU': 'Ala', 'GCC': 'Ala', 'GCA': 'Ala', 'GCG': 'Ala',
-    'UAU': 'Tyr', 'UAC': 'Tyr', 'UAA': 'Stop', 'UAG': 'Stop',
-    'CAU': 'His', 'CAC': 'His', 'CAA': 'Gln', 'CAG': 'Gln',
-    'AAU': 'Asn', 'AAC': 'Asn', 'AAA': 'Lys', 'AAG': 'Lys',
-    'GAU': 'Asp', 'GAC': 'Asp', 'GAA': 'Glu', 'GAG': 'Glu',
-    'UGU': 'Cys', 'UGC': 'Cys', 'UGA': 'Stop', 'UGG': 'Trp',
-    'CGU': 'Arg', 'CGC': 'Arg', 'CGA': 'Arg', 'CGG': 'Arg',
-    'AGU': 'Ser', 'AGC': 'Ser', 'AGA': 'Arg', 'AGG': 'Arg',
-    'GGU': 'Gly', 'GGC': 'Gly', 'GGA': 'Gly', 'GGG': 'Gly'
-  };
+   <script>
+    const codonMap = {
+      'UUU': 'Phe', 'UUC': 'Phe', 'UUA': 'Leu', 'UUG': 'Leu',
+      'CUU': 'Leu', 'CUC': 'Leu', 'CUA': 'Leu', 'CUG': 'Leu',
+      'AUU': 'Ile', 'AUC': 'Ile', 'AUA': 'Ile', 'AUG': 'Met',
+      'GUU': 'Val', 'GUC': 'Val', 'GUA': 'Val', 'GUG': 'Val',
+      'UCU': 'Ser', 'UCC': 'Ser', 'UCA': 'Ser', 'UCG': 'Ser',
+      'CCU': 'Pro', 'CCC': 'Pro', 'CCA': 'Pro', 'CCG': 'Pro',
+      'ACU': 'Thr', 'ACC': 'Thr', 'ACA': 'Thr', 'ACG': 'Thr',
+      'GCU': 'Ala', 'GCC': 'Ala', 'GCA': 'Ala', 'GCG': 'Ala',
+      'UAU': 'Tyr', 'UAC': 'Tyr', 'UAA': 'Stop', 'UAG': 'Stop',
+      'CAU': 'His', 'CAC': 'His', 'CAA': 'Gln', 'CAG': 'Gln',
+      'AAU': 'Asn', 'AAC': 'Asn', 'AAA': 'Lys', 'AAG': 'Lys',
+      'GAU': 'Asp', 'GAC': 'Asp', 'GAA': 'Glu', 'GAG': 'Glu',
+      'UGU': 'Cys', 'UGC': 'Cys', 'UGA': 'Stop', 'UGG': 'Trp',
+      'CGU': 'Arg', 'CGC': 'Arg', 'CGA': 'Arg', 'CGG': 'Arg',
+      'AGU': 'Ser', 'AGC': 'Ser', 'AGA': 'Arg', 'AGG': 'Arg',
+      'GGU': 'Gly', 'GGC': 'Gly', 'GGA': 'Gly', 'GGG': 'Gly'
+    };
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const links = document.querySelectorAll('nav a');
-    const sections = document.querySelectorAll('.tabbed-section');
-    const input = document.querySelector('.translator-box input');
-    const button = document.querySelector('.translator-box button');
+    window.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('nav a');
+      const sections = document.querySelectorAll('.tabbed-section');
+      links.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
+          sections.forEach(section => section.classList.remove('active-tab'));
+          document.getElementById(targetId).classList.add('active-tab');
+        });
+      });
 
-    links.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        sections.forEach(section => section.classList.remove('active-tab'));
-        document.getElementById(targetId).classList.add('active-tab');
+      const input = document.querySelector('.translator-box input');
+      const button = document.querySelector('.translator-box button');
+      button.addEventListener('click', () => {
+        const rawSeq = input.value.toUpperCase().replace(/[^AUCG]/g, '');
+        let result = '';
+        let protein = [];
+        let startIndex = rawSeq.indexOf('AUG');
+
+        if (startIndex === -1) {
+          result = 'Start codon (AUG) not found.';
+        } else {
+          for (let i = startIndex; i < rawSeq.length; i += 3) {
+            const codon = rawSeq.slice(i, i + 3);
+            if (codon.length < 3) break;
+            const aminoAcid = codonMap[codon] || '???';
+            if (aminoAcid === 'Stop') break;
+            protein.push(aminoAcid);
+          }
+          result = protein.length > 0 ? `🧪 Protein: ${protein.join(' - ')}` : 'No valid protein formed.';
+        }
+
+        let outputDiv = document.getElementById('translator-output');
+        if (!outputDiv) {
+          outputDiv = document.createElement('div');
+          outputDiv.id = 'translator-output';
+          outputDiv.style.marginTop = '1.5rem';
+          outputDiv.style.fontSize = '1.2rem';
+          outputDiv.style.color = '#2e7d32';
+          document.querySelector('.translator-box').appendChild(outputDiv);
+        }
+        outputDiv.innerHTML = `<strong>${result}</strong>`;
       });
     });
-
-    button.addEventListener('click', () => {
-      const rawSeq = input.value.toUpperCase().replace(/[^AUCG]/g, '');
-      let result = '';
-      let protein = [];
-      let startIndex = rawSeq.indexOf('AUG');
-
-      if (startIndex === -1) {
-        result = 'Start codon (AUG) not found.';
-      } else {
-        for (let i = startIndex; i < rawSeq.length; i += 3) {
-          const codon = rawSeq.slice(i, i + 3);
-          if (codon.length < 3) break;
-          const aminoAcid = codonMap[codon] || '???';
-          if (aminoAcid === 'Stop') break;
-          protein.push(aminoAcid);
-        }
-        result = protein.length > 0 ? `🧪 Protein: ${protein.join(' - ')}` : 'No valid protein formed.';
-      }
-
-      let outputDiv = document.getElementById('translator-output');
-      if (!outputDiv) {
-        outputDiv = document.createElement('div');
-        outputDiv.id = 'translator-output';
-        outputDiv.style.marginTop = '1.5rem';
-        outputDiv.style.fontSize = '1.2rem';
-        outputDiv.style.color = '#2e7d32';
-        document.querySelector('.translator-box').appendChild(outputDiv);
-      }
-      outputDiv.innerHTML = `<strong>${result}</strong>`;
-    });
-  });
-</script>
+  </script>
 </head>
 <body>
   <header>
