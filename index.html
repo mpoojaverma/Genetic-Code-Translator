@@ -4,103 +4,186 @@
   <meta charset="UTF-8">
   <title>RNA to Protein Translator | BioTool</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+    }
+    header {
+      background: linear-gradient(to right, #00796b, #004d40);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    nav {
+      background: #004d40;
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #ffd54f;
+    }
+    .tabbed-section {
+      display: none;
+      padding: 2rem;
+    }
+    .active-tab {
+      display: block;
+    }
+    .input-section {
+      text-align: center;
+      padding: 2rem;
+      background: #e8f5e9;
+    }
+    .result-section {
+      text-align: center;
+      padding: 2rem;
+    }
+    input[type="text"] {
+      padding: 0.5rem;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background: #004d40;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #00695c;
+    }
+    table {
+      margin: 1rem auto;
+      border-collapse: collapse;
+      width: 80%;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      text-align: center;
+    }
+    th {
+      background: #004d40;
+      color: white;
+    }
+    .start { background-color: #c8e6c9; }
+    .stop { background-color: #ffcdd2; }
+    .invalid { background-color: #ffe082; }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #004d40;
+      color: white;
+    }
+  </style>
 </head>
 <body>
 
   <header>
     <h1>🧬 RNA to Protein Translator 🧬</h1>
-    <p>🌿 This tool allows you to enter an RNA sequence and view the corresponding amino acids it translates into. Built for students and enthusiasts exploring the Central Dogma of molecular biology. 🌿</p>
+    <p>Enter an RNA sequence and discover what proteins it creates!</p>
   </header>
 
   <nav>
     <ul>
-      <li><a href="#intro">🔬 Introduction to Molecular Biology</a></li>
-      <li><a href="#how-it-works">📖 How It Works</a></li>
-      <li><a href="#translator">🧪 Try the Translator</a></li>
-      <li><a href="#codon-table">📚 Full Codon Table</a></li>
+      <li><a href="#" onclick="switchTab('home')">🏠 Home</a></li>
+      <li><a href="#" onclick="switchTab('intro')">🔬 Molecular Biology</a></li>
+      <li><a href="#" onclick="switchTab('how')">📖 How Translation Works</a></li>
+      <li><a href="#" onclick="switchTab('codon')">📚 Codon Table</a></li>
     </ul>
   </nav>
 
-  <section id="intro" class="info-section">
-    <h2>🔬 Introduction to Molecular Biology</h2>
-    <p>Molecular biology focuses on understanding the mechanisms by which genetic information encoded in DNA is used to produce the proteins that determine cell structure and function. This field bridges the gap between genetics and biochemistry.</p>
-    <p>Three core processes are central to molecular biology:</p>
-    <ul>
-      <li><strong>Replication:</strong> The process by which DNA makes a copy of itself during cell division.</li>
-      <li><strong>Transcription:</strong> The conversion of DNA information into messenger RNA (mRNA).</li>
-      <li><strong>Translation:</strong> The process by which mRNA is decoded to build proteins, the functional molecules in cells.</li>
-    </ul>
-    <p>The Central Dogma of Molecular Biology summarizes this flow of information as: <strong>DNA → RNA → Protein</strong>.</p>
-  </section>
+  <main>
+    <section id="home" class="tabbed-section active-tab">
+      <section class="input-section">
+        <h2>🧪 RNA to Protein Translator</h2>
+        <label for="rnaInput">🔡 Enter RNA sequence (e.g., AUGGCUUAA):</label>
+        <input type="text" id="rnaInput" placeholder="Enter RNA sequence here">
+        <button onclick="translateRNA()">Translate</button>
+      </section>
+      <section class="result-section" id="resultSection">
+        <!-- Output table will appear here -->
+      </section>
+    </section>
 
-  <section id="how-it-works" class="info-section">
-    <h2>📖 How It Works</h2>
-    <p>In translation, the sequence of codons in mRNA is interpreted by the ribosome to assemble a chain of amino acids, forming a protein. Each group of three RNA nucleotides forms a codon that corresponds to one amino acid or a stop signal.</p>
-    <ul>
-      <li><strong>Start Codon:</strong> AUG — signals the beginning of translation and codes for Methionine.</li>
-      <li><strong>Stop Codons:</strong> UAA, UAG, UGA — signal the end of translation.</li>
-    </ul>
-    <p>The ribosome moves along the RNA sequence three nucleotides at a time, matching each codon to its corresponding amino acid using transfer RNA (tRNA). The amino acids are linked together to form a polypeptide chain, which folds into a functional protein.</p>
-  </section>
+    <section id="intro" class="tabbed-section">
+      <h2>🔬 Introduction to Molecular Biology</h2>
+      <p>Molecular biology is a branch of science that explores the structure and function of genes at a molecular level. It is primarily concerned with understanding the interactions between DNA, RNA, and proteins within cells.</p>
+      <ul>
+        <li><strong>Replication:</strong> DNA copies itself for cell division.</li>
+        <li><strong>Transcription:</strong> DNA is transcribed into mRNA.</li>
+        <li><strong>Translation:</strong> mRNA is translated into proteins.</li>
+      </ul>
+      <p>These processes together are referred to as the Central Dogma of Molecular Biology: <strong>DNA → RNA → Protein</strong>.</p>
+    </section>
 
-  <section id="translator" class="input-section">
-    <h2>🧪 RNA to Protein Translator</h2>
-    <label for="rnaInput">🔡 Enter RNA sequence (e.g., AUGGCUUAA):</label>
-    <input type="text" id="rnaInput" placeholder="Enter RNA sequence here">
-    <button onclick="translateRNA()">Translate</button>
-  </section>
+    <section id="how" class="tabbed-section">
+      <h2>📖 How Translation Works</h2>
+      <p>Translation is the final step in the expression of genes. It converts genetic code from RNA into a sequence of amino acids to form proteins. Codons, or 3-letter nucleotide sequences, are read by ribosomes and matched to corresponding amino acids.</p>
+      <ul>
+        <li><strong>Start Codon (AUG):</strong> Initiates translation and codes for Methionine.</li>
+        <li><strong>Stop Codons (UAA, UAG, UGA):</strong> End the translation process.</li>
+      </ul>
+      <p>Each codon is matched with an amino acid by tRNA molecules, creating a growing peptide chain.</p>
+    </section>
 
-  <section class="result-section" id="resultSection">
-    <!-- Output table will appear here -->
-  </section>
-
-  <section id="codon-table" class="info-section">
-    <h2>📚 Full Codon Table</h2>
-    <p>This table lists the 64 possible RNA codons and the amino acids they code for. It is used during translation to determine which amino acid is added to a growing polypeptide chain.</p>
-    <table>
-      <tr><th>Codon</th><th>Amino Acid</th></tr>
-      <tr><td>UUU</td><td>Phenylalanine</td></tr>
-      <tr><td>UUC</td><td>Phenylalanine</td></tr>
-      <tr><td>UUA</td><td>Leucine</td></tr>
-      <tr><td>UUG</td><td>Leucine</td></tr>
-      <tr><td>UCU</td><td>Serine</td></tr>
-      <tr><td>UCC</td><td>Serine</td></tr>
-      <tr><td>UCA</td><td>Serine</td></tr>
-      <tr><td>UCG</td><td>Serine</td></tr>
-      <tr><td>UAU</td><td>Tyrosine</td></tr>
-      <tr><td>UAC</td><td>Tyrosine</td></tr>
-      <tr><td>UAA</td><td>STOP</td></tr>
-      <tr><td>UAG</td><td>STOP</td></tr>
-      <tr><td>UGU</td><td>Cysteine</td></tr>
-      <tr><td>UGC</td><td>Cysteine</td></tr>
-      <tr><td>UGA</td><td>STOP</td></tr>
-      <tr><td>UGG</td><td>Tryptophan</td></tr>
-      <tr><td>CUU</td><td>Leucine</td></tr>
-      <tr><td>CUC</td><td>Leucine</td></tr>
-      <tr><td>CUA</td><td>Leucine</td></tr>
-      <tr><td>CUG</td><td>Leucine</td></tr>
-      <tr><td>CCU</td><td>Proline</td></tr>
-      <tr><td>CCC</td><td>Proline</td></tr>
-      <tr><td>CCA</td><td>Proline</td></tr>
-      <tr><td>CCG</td><td>Proline</td></tr>
-      <tr><td>CAU</td><td>Histidine</td></tr>
-      <tr><td>CAC</td><td>Histidine</td></tr>
-      <tr><td>CAA</td><td>Glutamine</td></tr>
-      <tr><td>CAG</td><td>Glutamine</td></tr>
-      <tr><td>CGU</td><td>Arginine</td></tr>
-      <tr><td>CGC</td><td>Arginine</td></tr>
-      <tr><td>CGA</td><td>Arginine</td></tr>
-      <tr><td>CGG</td><td>Arginine</td></tr>
-      <tr><td>AUG</td><td>Methionine (Start)</td></tr>
-      <!-- Add remaining codons as needed -->
-    </table>
-  </section>
+    <section id="codon" class="tabbed-section">
+      <h2>📚 Codon Table</h2>
+      <p>Below is a selection of codons and the amino acids they code for:</p>
+      <table>
+        <tr><th>Codon</th><th>Amino Acid</th></tr>
+        <tr><td>AUG</td><td>Methionine (Start)</td></tr>
+        <tr><td>UUU</td><td>Phenylalanine</td></tr>
+        <tr><td>UUC</td><td>Phenylalanine</td></tr>
+        <tr><td>UUA</td><td>Leucine</td></tr>
+        <tr><td>UUG</td><td>Leucine</td></tr>
+        <tr><td>UCU</td><td>Serine</td></tr>
+        <tr><td>UCC</td><td>Serine</td></tr>
+        <tr><td>UCA</td><td>Serine</td></tr>
+        <tr><td>UCG</td><td>Serine</td></tr>
+        <tr><td>UAU</td><td>Tyrosine</td></tr>
+        <tr><td>UAC</td><td>Tyrosine</td></tr>
+        <tr><td>UGU</td><td>Cysteine</td></tr>
+        <tr><td>UGC</td><td>Cysteine</td></tr>
+        <tr><td>UGA</td><td>STOP</td></tr>
+        <tr><td>UAG</td><td>STOP</td></tr>
+        <tr><td>UAA</td><td>STOP</td></tr>
+      </table>
+    </section>
+  </main>
 
   <footer>
     <p>Created by <strong>M. Pooja Verma</strong> | BTech CSE Undergrad | Made with 💚 for Biology</p>
   </footer>
 
   <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tabbed-section').forEach(tab => tab.classList.remove('active-tab'));
+      document.getElementById(tabId).classList.add('active-tab');
+    }
+
     const codonMap = {
       "AUG": "Methionine (Start)",
       "UUU": "Phenylalanine", "UUC": "Phenylalanine",
