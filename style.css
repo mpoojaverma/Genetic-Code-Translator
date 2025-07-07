@@ -1,0 +1,136 @@
+/* style.css – RNA Translator Bio-Themed Styling */
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #e0f7fa, #e8f5e9);
+  color: #333;
+}
+
+header {
+  background: linear-gradient(to right, #80deea, #a5d6a7);
+  padding: 30px;
+  text-align: center;
+  color: #004d40;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #1b5e20;
+}
+
+.input-section {
+  text-align: center;
+  padding: 30px;
+}
+
+.input-section label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.input-section input {
+  padding: 10px;
+  width: 60%;
+  max-width: 400px;
+  margin: 10px;
+  border: 2px solid #4db6ac;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.input-section button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #00796b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-section button:hover {
+  background-color: #004d40;
+}
+
+.result-section {
+  padding: 20px;
+  text-align: center;
+}
+
+.result-section table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.result-section th, td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.result-section tr:nth-child(even) {
+  background-color: #f1f8e9;
+}
+
+.start {
+  color: green;
+  font-weight: bold;
+}
+
+.stop {
+  color: red;
+  font-weight: bold;
+}
+
+.invalid {
+  color: #888;
+  font-style: italic;
+}
+
+.info-section {
+  padding: 30px;
+  background-color: #f3f3f3;
+  line-height: 1.6;
+}
+
+.info-section h2 {
+  color: #2e7d32;
+}
+
+.info-section ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+.cpp-section {
+  background-color: #e0f2f1;
+  padding: 30px;
+  font-family: monospace;
+}
+
+.cpp-section pre {
+  background: #c8e6c9;
+  padding: 15px;
+  overflow-x: auto;
+  border-radius: 5px;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #b2dfdb;
+  font-size: 0.9rem;
+  color: #004d40;
+}
